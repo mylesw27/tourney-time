@@ -1,33 +1,57 @@
 from django.db import models
+from django.conf import settings
+from django.contrib.postgres.fields import HStoreField
 
 class Tournament(models.Model):
     # Name
     name = models.CharField(max_length=120)
     # Dates
     date1 = models.DateField()
-    date2 = models.DateField(blank=True)
-    date3 = models.DateField(blank=True)
+    date2 = models.DateField(blank=True, null=True)
+    date3 = models.DateField(blank=True, null=True)
     date4 = models.DateField(blank=True, null=True)
     # Courses
     course1 = models.TextField()
     course2 = models.TextField(blank=True)
     course3 = models.TextField(blank=True)
     course4 = models.TextField(blank=True)
+    # Players
+    players = models.ManyToManyField(settings.AUTH_USER_MODEL, through="Player")
 
     def _str_(self):
         return self.title
     
+class Player(models.Model):
+    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    
 class Score(models.Model):
     # foreign key - user id
-    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # foreign key - tournament
-
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     # course
-
+    course = models.TextField()
     # date
-
+    date = models.DateField()
     # partners
-
+    partners = HStoreField(blank=True, null=True)
     # Hole 1 Score
-
-    pass
+    hole1 = models.IntegerField(blank=True, null=True)
+    hole2 = models.IntegerField(blank=True, null=True)
+    hole3 = models.IntegerField(blank=True, null=True)
+    hole4 = models.IntegerField(blank=True, null=True)
+    hole5 = models.IntegerField(blank=True, null=True)
+    hole6 = models.IntegerField(blank=True, null=True)
+    hole7 = models.IntegerField(blank=True, null=True)
+    hole8 = models.IntegerField(blank=True, null=True)
+    hole9 = models.IntegerField(blank=True, null=True)
+    hole10 = models.IntegerField(blank=True, null=True)
+    hole11 = models.IntegerField(blank=True, null=True)
+    hole12 = models.IntegerField(blank=True, null=True)
+    hole13 = models.IntegerField(blank=True, null=True)
+    hole14 = models.IntegerField(blank=True, null=True)
+    hole15 = models.IntegerField(blank=True, null=True)
+    hole16 = models.IntegerField(blank=True, null=True)
+    hole17 = models.IntegerField(blank=True, null=True)
+    hole18 = models.IntegerField(blank=True, null=True)

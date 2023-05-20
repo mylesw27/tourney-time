@@ -21,6 +21,8 @@ from tourney_time import views
 
 router = routers.DefaultRouter()
 router.register(r'tournaments', views.TournamentView, 'tournament')
+router.register(r'scores', views.ScoreView, 'score')
+router.register(r'players', views.PlayersView, 'player')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
