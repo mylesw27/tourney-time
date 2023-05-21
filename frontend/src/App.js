@@ -25,7 +25,7 @@ function App() {
       />
 
       <Route
-        path='/tournament'
+        path='/tournament/:id'
         element={
           <Tournament />
         }
