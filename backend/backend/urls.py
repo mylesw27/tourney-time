@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 router.register(r'tournaments', views.TournamentView, 'tournament')
 router.register(r'scores', views.ScoreView, 'score')
 router.register(r'players', views.PlayersView, 'player')
+router.register(r'users', views.UsersView, 'user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

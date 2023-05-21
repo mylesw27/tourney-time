@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from .models import Tournament, Score, Player
+from django.contrib.auth.models import User
 
 class TournamentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tournament
-        fields = ('id','name', 'date1', 'date2', 'date3', 'date4', 'course1', 'course2', 'course3', 'course4')
+        fields = ('id','name', 'organizer', 'date1', 'date2', 'date3', 'date4', 'course1', 'course2', 'course3', 'course4', 'players')
 
 class ScoreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +16,8 @@ class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
         fields = ('player', 'tournament')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']

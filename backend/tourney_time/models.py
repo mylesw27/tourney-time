@@ -21,6 +21,10 @@ class Tournament(models.Model):
     def _str_(self):
         return self.title
     
+    def get_players():
+        players = Player.objects.prefetch_related('id')
+
+
 class Player(models.Model):
     player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
