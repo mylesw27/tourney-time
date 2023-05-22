@@ -5,6 +5,8 @@ from django.contrib.postgres.fields import HStoreField
 class Tournament(models.Model):
     # Name
     name = models.CharField(max_length=120)
+    # Organizer
+    organizer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="organizer")
     # Dates
     date1 = models.DateField()
     date2 = models.DateField(blank=True, null=True)
@@ -16,13 +18,13 @@ class Tournament(models.Model):
     course3 = models.TextField(blank=True)
     course4 = models.TextField(blank=True)
     # Players
-    players = models.ManyToManyField(settings.AUTH_USER_MODEL, through="Player")
+    players = models.ManyToManyField(settings.AUTH_USER_MODEL, through="Player", related_name="players")
 
     def _str_(self):
-        return self.title
+        return self.name
     
     def get_players():
-        players = Player.objects.prefetch_related('id')
+        players = Player.objects.prefetch_related('player')
 
 
 class Player(models.Model):
