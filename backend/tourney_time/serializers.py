@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ScoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Score
-        fields = ('id', 'user', 'tournament', 'course', 'date', 'hole1', 'hole2', 'hole3', 'hole4', 'hole5', 'hole6', 'hole7', 'hole8', 'hole9', 'hole10', 'hole11', 'hole12', 'hole13', 'hole14', 'hole15', 'hole16', 'hole17', 'hole18')
+        fields = ('id', 'user', 'tournament', 'round', 'course', 'date', 'hole1', 'hole2', 'hole3', 'hole4', 'hole5', 'hole6', 'hole7', 'hole8', 'hole9', 'hole10', 'hole11', 'hole12', 'hole13', 'hole14', 'hole15', 'hole16', 'hole17', 'hole18')
 
 class PlayerSerializer(serializers.ModelSerializer):
     player = UserSerializer()

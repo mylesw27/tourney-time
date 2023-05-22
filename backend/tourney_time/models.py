@@ -36,6 +36,8 @@ class Score(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # foreign key - tournament
     tournament = models.ForeignKey(Tournament, related_name='scores', on_delete=models.CASCADE)
+    # round
+    round = models.IntegerField(default=1)
     # course
     course = models.TextField()
     # date
