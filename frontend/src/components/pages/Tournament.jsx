@@ -4,6 +4,7 @@ import axios from "axios"
 
 export default function Tournament () {
     const [tournament, setTournament] = useState({})
+    const [players, setPlayers] = useState([])
     const { id } = useParams()
 
     useEffect (() => {
@@ -12,6 +13,7 @@ export default function Tournament () {
             .then((response) => {
                 console.log(response.data)
                 setTournament(response.data)
+                setPlayers(response.data.players)
             })
     }, [])
 
@@ -33,14 +35,20 @@ export default function Tournament () {
     return (
         <>
             <h1>{tournament.name}</h1>
-            <h2>{date1}</h2>
-            <h2>{tournament.course1}</h2>
-            <h2>{date2}</h2>
-            <h2>{tournament.course2}</h2>
-            <h2>{date3}</h2>
-            <h2>{tournament.course3}</h2>
-            <h2>{date4}</h2>
-            <h2>{tournament.course4}</h2>
+            <p>{date1}</p>
+            <p>{tournament.course1}</p>
+            <p>{date2}</p>
+            <p>{tournament.course2}</p>
+            <p>{date3}</p>
+            <p>{tournament.course3}</p>
+            <p>{date4}</p>
+            <p>{tournament.course4}</p>
+            <h2>Players</h2>
+            {players.map((player) => {
+                return (
+                    <h3>{`${player.first_name} ${player.last_name}`}</h3>
+                )
+            })}
         </>
     )
 }
