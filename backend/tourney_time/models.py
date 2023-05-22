@@ -35,13 +35,13 @@ class Score(models.Model):
     # foreign key - user id
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # foreign key - tournament
-    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(Tournament, related_name='scores', on_delete=models.CASCADE)
     # course
     course = models.TextField()
     # date
     date = models.DateField()
     # partners
-    partners = HStoreField(blank=True, null=True)
+    # partners = HStoreField(child=models.CharField, allow_empty=True)
     # Hole 1 Score
     hole1 = models.IntegerField(blank=True, null=True)
     hole2 = models.IntegerField(blank=True, null=True)
