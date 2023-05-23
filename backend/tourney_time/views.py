@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse, HttpResponse
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import make_password
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 class TournamentView(viewsets.ModelViewSet):
@@ -33,7 +38,7 @@ class HomeView(APIView):
     
 class LogoutView(APIView):
      permission_classes = (IsAuthenticated,)
-     def post(self, request):
+     def post(self, request): 
           
           try:
                refresh_token = request.data["refresh_token"]
@@ -42,3 +47,24 @@ class LogoutView(APIView):
                return Response(status=status.HTTP_205_RESET_CONTENT)
           except Exception as e:
                return Response(status=status.HTTP_400_BAD_REQUEST)
+          
+@csrf_exempt
+def register_view(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("username")
+        password = make_password(data.get("password"))
+
+        user = User.objects.create(username=username, password=password)
+
+        if user: 
+            refresh = RefreshToken.for_user(user)
+            res_data = {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'message': 'User Created'
+            }
+
+            return JsonResponse(res_data, status=201)
+        else:
+            return JsonResponse({"error": "Unable to register user"}, status=400)
