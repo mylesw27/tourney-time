@@ -1,34 +1,30 @@
-import axios from "axios"
 import { useState } from "react"
-import API from '../../API.js'
+import API from "../../API"
 
-export default function Login() {
+export default function Register() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = async e => {
+    const handleRegister = async e => {
         e.preventDefault()
         const user = {
             username: username,
             password: password
         }
-        const {data} = await API.post('token/', 
-            user,
-            {headers: {'Content-Type': 'application/json'}, 
-            })
-        console.log(data)
+        const response = await API.post('register/', user)
+        console.log(response.data)
         localStorage.clear()
-        localStorage.setItem('access_token', data.access)
-        localStorage.setItem('refresh_token', data.refresh)
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`
+        localStorage.setItem('access_token', response.data.access)
+        localStorage.setItem('refresh_token', response.data.refresh)
+        console.log(localStorage)
         window.location.href = '/profile'
 
     }
 
     return (
         <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            <form onSubmit={handleRegister}>
                 <label htmlFor="username">Username</label>
                 <input 
                     placeholder="Enter Username"

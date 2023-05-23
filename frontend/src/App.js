@@ -8,9 +8,22 @@ import Tournament from './components/pages/Tournament.jsx';
 import Login from './components/pages/Login.jsx'
 import jwt_decode from "jwt-decode"
 import Profile from './components/pages/Profile';
+import Header from './components/partials/Header';
+import API from './API';
+
+
+function HeaderWrapper({children, handleLogout, currentUser, userProfile}) {
+  return (
+    <>
+      <Header handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile} />
+      {children}
+    </>
+  )
+}
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
+  const [userProfile, setUserProfile] = useState({})
   
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token')
@@ -20,13 +33,29 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    if(currentUser) {
+      const getProfile = async () => {
+        if (currentUser) {
+            const findProfile = await API.get(`/api/users/${currentUser}`)
+            setUserProfile(findProfile.data)
+        }
+    }
+    getProfile()
+    }
+  }, [currentUser])
+
+  const handleLogout = () => {
+    console.log("logout")
+  }
+
   return (
   <Router>
     <Routes>
       <Route 
         path="/"
         element={
-          <Home />
+          <Home userProfile={userProfile}/>
         }
       />
 
@@ -40,9 +69,11 @@ function App() {
       <Route 
         path='/profile'
         element={
-          <Profile
-            currentUser={currentUser}
-          />
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <Profile
+              currentUser={currentUser}
+            />
+          </HeaderWrapper>
         }
       />
 
