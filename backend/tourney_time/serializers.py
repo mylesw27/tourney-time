@@ -19,8 +19,8 @@ class PlayerSerializer(serializers.ModelSerializer):
         fields = ('player', 'tournament')
 
 class TournamentSerializer(serializers.ModelSerializer):
-    players = UserSerializer(many=True)
-    scores = ScoreSerializer(many=True)
+    players = UserSerializer(many=True, read_only=True)
+    scores = ScoreSerializer(many=True, read_only=True)
     class Meta:
         model = Tournament
         fields = ('id','name', 'organizer', 'date1', 'date2', 'date3', 'date4', 'course1', 'course2', 'course3', 'course4', 'players', 'scores')

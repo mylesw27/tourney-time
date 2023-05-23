@@ -14,11 +14,11 @@ class Tournament(models.Model):
     date4 = models.DateField(blank=True, null=True)
     # Courses
     course1 = models.TextField()
-    course2 = models.TextField(blank=True)
-    course3 = models.TextField(blank=True)
-    course4 = models.TextField(blank=True)
+    course2 = models.TextField(blank=True, null=True)
+    course3 = models.TextField(blank=True, null=True)
+    course4 = models.TextField(blank=True, null=True)
     # Players
-    players = models.ManyToManyField(settings.AUTH_USER_MODEL, through="Player", related_name="players")
+    players = models.ManyToManyField(settings.AUTH_USER_MODEL, through="Player", related_name="players", blank=True, null=True)
 
     def _str_(self):
         return self.name
