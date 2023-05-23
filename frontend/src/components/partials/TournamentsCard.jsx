@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function TournamentsCard(props) {
     const tournament = props.tournament
-    console.log(tournament)
-
-
 
     return (
         <>

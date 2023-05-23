@@ -9,7 +9,7 @@ export default function Header(props) {
   useEffect(() => {
     setCurrentUser(props.currentUser)
   },[currentUser])
-
+  
 
   return (
     <nav className='navbar'>

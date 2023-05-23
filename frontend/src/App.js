@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode"
 import Profile from './components/pages/Profile';
 import Header from './components/partials/Header';
 import API from './API';
+import TournamentForm from './components/partials/TournamentForm';
 
 
 function HeaderWrapper({children, handleLogout, currentUser, userProfile}) {
@@ -47,6 +48,13 @@ function App() {
 
   const handleLogout = () => {
     console.log("logout")
+      try {API.post('logout/', {refresh_token:localStorage.getItem('refresh_token')} , {headers: {'Content-Type': 'application/json'}}, {withCredentials: true})
+      localStorage.clear() 
+      axios.defaults.headers.common['Authorization'] = null
+      window.location.href = '/'
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -71,7 +79,7 @@ function App() {
         element={
           <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
             <Profile
-              currentUser={currentUser}
+              currentUser={currentUser} userProfile={userProfile}
             />
           </HeaderWrapper>
         }
@@ -81,6 +89,15 @@ function App() {
         path="/tournaments"
         element={
           <Tournaments />
+        }
+      />
+
+      <Route
+        path='/tournament/new'
+        element={
+          <TournamentForm 
+            currentUser={currentUser} userProfile={userProfile}
+          />
         }
       />
 
