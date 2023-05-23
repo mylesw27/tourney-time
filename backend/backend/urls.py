@@ -24,6 +24,7 @@ router = routers.DefaultRouter()
 router.register(r'tournaments', views.TournamentView, 'tournament')
 router.register(r'scores', views.ScoreView, 'score')
 router.register(r'players', views.PlayersView, 'player')
+router.register(r'player_post', views.PlayerPostView, 'player-post')
 router.register(r'users', views.UsersView, 'user')
 
 urlpatterns = [

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from .serializers import TournamentSerializer, ScoreSerializer, PlayerSerializer, UserSerializer
+from rest_framework import viewsets, mixins
+from .serializers import TournamentSerializer, ScoreSerializer, PlayerSerializer, UserSerializer, PlayerPostSerializer
 from .models import Tournament, Score, Player
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
@@ -22,6 +22,10 @@ class ScoreView(viewsets.ModelViewSet):
 
 class PlayersView(viewsets.ModelViewSet):
     serializer_class = PlayerSerializer
+    queryset = Player.objects.all()
+
+class PlayerPostView(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = PlayerPostSerializer
     queryset = Player.objects.all()
 
 class UsersView(viewsets.ModelViewSet):
