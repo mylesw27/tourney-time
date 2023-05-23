@@ -104,7 +104,7 @@ function App() {
       <Route
         path='/tournament/:id'
         element={
-          <Tournament />
+          <Tournament currentUser={currentUser}/>
         }
       />
     </Routes>

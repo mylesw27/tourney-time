@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import axios from "axios"
+import API from '../../API'
+import AddUser from "../partials/AddUser"
 
-export default function Tournament () {
+export default function Tournament (props) {
     const [tournament, setTournament] = useState({})
+    const currentUser = props.currentUser
     const [players, setPlayers] = useState([])
     const [scores, setScores] = useState([])
     const [roundScores, setRoundScores] = useState([])
     const { id } = useParams()
+    const [allUsers, setAllUsers] = useState([])
+    const [addMode, setAddMode] = useState(false)
+    const [userSearch, setUserSearch] = useState('')
+    const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect (() => {
         const url = `http://localhost:8000/api/tournaments/${id}/`
@@ -16,14 +23,15 @@ export default function Tournament () {
                 setTournament(response.data)
                 setPlayers(response.data.players)
                 setScores(response.data.scores)
-                console.log(response.data)
             })
     }, [])
 
     useEffect(() => {
-        console.log(hashScores(scores))
         hashScores(scores)
     }, [tournament])
+
+    useEffect(() => {
+    }, [userSearch])
 
     const datify = (dateString) => {
         if (dateString) {
@@ -64,7 +72,22 @@ export default function Tournament () {
         
         setRoundScores([round1, round2, round3, round4])
     })
-    console.log(roundScores)
+
+    const handleAddMode = () => {
+        const getAllUsers = async () => {
+            const findUsers = await API.get('/api/users/')
+            console.log(findUsers)
+            setAllUsers(findUsers.data)
+        }
+        getAllUsers()
+        setAddMode(true)
+    }
+
+
+    const filterUsers = allUsers.filter((user) => {
+        return user.username.toLowerCase().includes(userSearch.toLowerCase())
+    })
+
 
     return (
         <>
@@ -75,6 +98,19 @@ export default function Tournament () {
             {date4 ? <p>{date4} - {tournament.course4}</p> : null}
             <Link to={`/tournament/${tournament.id}/leaderboard`}><button>Live Leaderboard</button></Link>
             <Link to={`/tournament/scorecard/`}><button>My Scorecard</button></Link>
+            {tournament.organizer == currentUser? <button onClick={handleAddMode}>Add Players</button> : null}
+            {addMode ? 
+                <>
+                    <input type="text" id="userSearch" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} /> 
+                    <ul>
+                        {filterUsers.map((user) => {
+                            return <AddUser user={user} tournament={tournament.id} />
+                        })}
+                    </ul>    
+                </>
+            : 
+                null 
+            }
             <h2>Scores</h2>
             <table>
                 <th>Player</th>

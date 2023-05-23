@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from '../../API'
+import { useNavigate } from "react-router-dom";
 
 export default function TournamentForm(props) {
     const [currentUser, setCurrentUser] = useState('')
@@ -14,7 +15,7 @@ export default function TournamentForm(props) {
     // const [course4, setCourse4] = useState('')
     const [form, setForm] = useState({
         name: '',
-        organizer : '',
+        organizer : 0,
         date1: null,
         date2: null,
         date3: null,
@@ -26,12 +27,14 @@ export default function TournamentForm(props) {
         players: [],
         scores: [],
     })
-
+    
+    const navigate = useNavigate()
 
     useEffect (() => {
         setCurrentUser(props.currentUser)
-        
-    })
+        form.organizer = currentUser  
+        console.log(currentUser)
+    }, [currentUser])
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -39,6 +42,7 @@ export default function TournamentForm(props) {
         const create_tournament = async () => {
             const response = await API.post('/api/tournaments/', form,{headers: {'Content-Type': 'application/json'}})
             console.log(response)
+            navigate(`/tournament/${response.data.id}`)
         }
         create_tournament()
     }
