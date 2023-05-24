@@ -21,6 +21,25 @@ class ScoreView(viewsets.ModelViewSet):
     serializer_class = ScoreSerializer
     queryset = Score.objects.all()
 
+    def create(self, request, *args, **kwargs):
+        tournament = request.data.get('tournament')
+        round_number = request.data.get('round')
+        user = request.data.get('user')
+
+        scorecard = Score.objects.filter(tournament=tournament, round=round_number, user=user).first()
+        print(f"checking {tournament} {round_number} {user}")
+        if scorecard:
+            serializer = self.get_serializer(scorecard)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        print(f"creating {tournament} {round_number} {user}")
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
 class PlayersView(viewsets.ModelViewSet):
     serializer_class = PlayerSerializer
     queryset = Player.objects.all()
