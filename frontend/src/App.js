@@ -11,6 +11,7 @@ import Profile from './components/pages/Profile';
 import Header from './components/partials/Header';
 import API from './API';
 import TournamentForm from './components/partials/TournamentForm';
+import Scorecard from './components/pages/Scorecard';
 
 
 function HeaderWrapper({children, handleLogout, currentUser, userProfile}) {
@@ -89,6 +90,13 @@ function App() {
         path="/tournaments"
         element={
           <Tournaments />
+        }
+      />
+      
+      <Route
+        path="/tournament/scorecard/:tournamentId/:round"
+        element={
+          <Scorecard currentUser={currentUser} />
         }
       />
 
