@@ -21,7 +21,7 @@ class PlayerSerializer(serializers.ModelSerializer):
     player = UserSerializer()
     class Meta:
         model = Player()
-        fields = ('player', 'tournament')
+        fields = ('id', 'player', 'tournament')
 
 class TournamentSerializer(serializers.ModelSerializer):
     players = UserSerializer(many=True, read_only=True)
