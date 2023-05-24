@@ -8,7 +8,7 @@ export default function Tournaments() {
     const [tournaments, setTournaments] = useState(["",""])
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/tournaments/")
+        axios.get("http://10.0.0.197:8000/api/tournaments/")
             .then((response) => {
                 setTournaments(response.data)
             })

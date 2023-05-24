@@ -15,16 +15,37 @@ export default function Tournament (props) {
     const [addMode, setAddMode] = useState(false)
     const [userSearch, setUserSearch] = useState('')
     const [filteredUsers, setFilteredUsers] = useState([])
+    const [allPlayers, setAllPlayers] = useState([])
+    const [isPlaying, setIsPlaying] = useState(false)
 
     useEffect (() => {
-        const url = `http://localhost:8000/api/tournaments/${id}/`
+        const url = `http://10.0.0.197:8000/api/tournaments/${id}/`
         axios.get(url)
             .then((response) => {
                 setTournament(response.data)
                 setPlayers(response.data.players)
                 setScores(response.data.scores)
             })
+        axios.get('http://10.0.0.197:8000/api/players/')
+            .then((response) => {
+                setAllPlayers(response.data)
+            })
     }, [])
+
+
+    const userCheck = () => {
+        console.log(playerIdArray, currentUser)
+        if (playerIdArray.includes(currentUser)) {
+            setIsPlaying(true)
+        }
+    }
+
+
+    useEffect(() => {
+        if (currentUser) {
+            userCheck()
+        }
+    }, [players])
 
     useEffect(() => {
         hashScores(scores)
@@ -74,6 +95,7 @@ export default function Tournament (props) {
     })
 
     const handleAddMode = () => {
+        if (!addMode) {
         const getAllUsers = async () => {
             const findUsers = await API.get('/api/users/')
             console.log(findUsers)
@@ -81,13 +103,22 @@ export default function Tournament (props) {
         }
         getAllUsers()
         setAddMode(true)
+    } else {
+        setAddMode(false)
+    }
     }
 
+    let playerIdArray = players.map((player) => {
+        return player.id
+    })
 
     const filterUsers = allUsers.filter((user) => {
         return user.username.toLowerCase().includes(userSearch.toLowerCase())
     })
 
+    const allPlayersFilter = allPlayers.filter((player) => {
+        return player.tournament == tournament.id
+    })
 
     return (
         <>
@@ -97,14 +128,26 @@ export default function Tournament (props) {
             {date3 ? <p>{date3} - {tournament.course3}</p> : null}
             {date4 ? <p>{date4} - {tournament.course4}</p> : null}
             <Link to={`/tournament/${tournament.id}/leaderboard`}><button>Live Leaderboard</button></Link>
-            <Link to={`/tournament/scorecard/`}><button>My Scorecard</button></Link>
-            {tournament.organizer == currentUser? <button onClick={handleAddMode}>Add Players</button> : null}
+            {isPlaying ? 
+                <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">My Scorecard</button>
+                    <ul className="dropdown-menu">
+                        <li><Link to='/tournament/scorecard/9/1' className="dropdown-item" href="#">Round 1</Link></li>
+                        {date2 ? <li><Link to='/tournament/scorecard/9/2' className="dropdown-item" href="#">Round 2</Link></li> : null }
+                        {date3 ? <li><Link to='/tournament/scorecard/9/3' className="dropdown-item" href="#">Round 3</Link></li> : null }
+                        {date4 ? <li><Link to='/tournament/scorecard/9/4' className="dropdown-item" href="#">Round 4</Link></li> : null }
+                    </ul>
+                </div>
+                
+                
+                : null }
+            {tournament.organizer == currentUser? <button onClick={handleAddMode}>Add/Remove Players</button> : null}
             {addMode ? 
                 <>
                     <input type="text" id="userSearch" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} /> 
                     <ul>
                         {filterUsers.map((user) => {
-                            return <AddUser user={user} tournament={tournament.id} />
+                            return <AddUser user={user} tournament={tournament.id} playerIdArray={playerIdArray} players={players} allPlayersFilter={allPlayersFilter}/>
                         })}
                     </ul>    
                 </>

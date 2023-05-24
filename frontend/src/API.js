@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:8000/",
+    baseURL: "http://10.0.0.197:8000/",
     'Access-Control-Allow-Credentials': true,
     crossorigin: true,
 })
