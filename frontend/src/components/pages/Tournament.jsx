@@ -132,7 +132,7 @@ export default function Tournament (props) {
                 <div className="dropdown">
                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">My Scorecard</button>
                     <ul className="dropdown-menu">
-                        <li><Link to='/tournament/scorecard/9/1' className="dropdown-item" href="#">Round 1</Link></li>
+                        <li><Link to={`/tournament/scorecard/${tournament.id}/1`} className="dropdown-item" href="#">Round 1</Link></li>
                         {date2 ? <li><Link to='/tournament/scorecard/9/2' className="dropdown-item" href="#">Round 2</Link></li> : null }
                         {date3 ? <li><Link to='/tournament/scorecard/9/3' className="dropdown-item" href="#">Round 3</Link></li> : null }
                         {date4 ? <li><Link to='/tournament/scorecard/9/4' className="dropdown-item" href="#">Round 4</Link></li> : null }

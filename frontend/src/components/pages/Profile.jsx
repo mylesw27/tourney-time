@@ -26,13 +26,17 @@ export default function Profile(props) {
         getTournaments()
     }, [currentUser])
 
+    useEffect(() => {
+
+    }, [currentUser])
+
     return (
         <>
             <p>player image</p>
             <h1>{profile.first_name}</h1>
             <p>Edit Profile</p>
             <h2>Tournaments</h2>
-            <TournamentList />
+            {currentUser ? <TournamentList currentUser={currentUser}/> : null }
         </>
     )
 }

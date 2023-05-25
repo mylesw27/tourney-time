@@ -1,5 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 export default function Header(props) {
   const [currentUser, setCurrentUser] = useState('')
@@ -12,7 +16,7 @@ export default function Header(props) {
   
 
   return (
-    <nav className='navbar'>
+    <Navbar bg='dark' expand='lg' variant='dark'>
       <div>
         { currentUser ?
         <>
@@ -25,7 +29,7 @@ export default function Header(props) {
         </>
         }
       </div>
-    </nav>
+    </Navbar>
   )
 
 }

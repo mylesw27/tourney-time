@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useState } from "react"
 import API from '../../API.js'
+import './Login.css'
+import { Button, Form } from "react-bootstrap"
 
 export default function Login() {
     const [username, setUsername] = useState('')
@@ -27,19 +29,21 @@ export default function Login() {
 
     return (
         <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input 
-                    placeholder="Enter Username"
-                    name='username'
-                    type='text'
-                    value={username}
-                    required
-                    onChange={e => setUsername(e.target.value)}
-                />
-                <label htmlFor="password">Password</label>
-                <input 
+            <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label controlId="username">Username</Form.Label>
+                    <Form.Control 
+                        placeholder="Enter Username"
+                        name='username'
+                        type='text'
+                        value={username}
+                        required
+                        onChange={e => setUsername(e.target.value)}
+                    />
+
+                </Form.Group>
+                <Form.Label controlId="password">Password</Form.Label>
+                <Form.Control 
                     placeholder="Enter password"
                     name='password'
                     type='text'
@@ -47,8 +51,8 @@ export default function Login() {
                     required
                     onChange={e => setPassword(e.target.value)}
                 />
-                <button type='submit'>Submit</button>
-            </form>
+                <Button type='submit' variant='success' className="submitButton">Submit</Button>
+            </Form>
         </>
     )
 }

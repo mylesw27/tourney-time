@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Home from './components/pages/Home'
-import Tournaments from './components/pages/TournamentList.jsx';
+import TournamentList from './components/pages/TournamentList.jsx';
 import Tournament from './components/pages/Tournament.jsx';
 import Login from './components/pages/Login.jsx'
 import jwt_decode from "jwt-decode"
@@ -89,30 +89,38 @@ function App() {
       <Route
         path="/tournaments"
         element={
-          <Tournaments />
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <TournamentList currentUser={currentUser} />
+          </HeaderWrapper>
         }
       />
       
       <Route
         path="/tournament/scorecard/:tournamentId/:round"
         element={
-          <Scorecard currentUser={currentUser} />
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <Scorecard currentUser={currentUser} />
+          </HeaderWrapper>
         }
       />
 
       <Route
         path='/tournament/new'
         element={
-          <TournamentForm 
-            currentUser={currentUser} userProfile={userProfile}
-          />
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <TournamentForm 
+              currentUser={currentUser} userProfile={userProfile}
+            />
+          </HeaderWrapper>
         }
       />
 
       <Route
         path='/tournament/:id'
         element={
-          <Tournament currentUser={currentUser}/>
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <Tournament currentUser={currentUser}/>
+          </HeaderWrapper>
         }
       />
     </Routes>

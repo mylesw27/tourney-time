@@ -41,6 +41,7 @@ export default function Scorecard(props) {
             API.post('/api/scores/', requestData)
             .then((response) => {
                 setScorecard(response.data)
+                setScoreForm(response.data)
                 console.log(response.data)
             })
             console.log(requestData)
