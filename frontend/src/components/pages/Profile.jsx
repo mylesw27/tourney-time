@@ -2,6 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import API from "../../API";
 import TournamentList from "./TournamentList.jsx"
+import './Profile.css'
+import { Pencil, PencilFill } from 'react-bootstrap-icons'
+import { Link } from "react-router-dom";
 
 export default function Profile(props) {
     const [currentUser, setCurrentUser] = useState('')
@@ -31,12 +34,13 @@ export default function Profile(props) {
     }, [currentUser])
 
     return (
-        <>
-            <p>player image</p>
-            <h1>{profile.first_name}</h1>
-            <p>Edit Profile</p>
-            <h2>Tournaments</h2>
+        <div className="profileDiv">
+            <div className="nameDiv">
+                <h1>{profile.first_name} {profile.last_name}</h1>
+                <Link to='/profile/edit'><Pencil className="pencil" /></Link>
+            </div>
+            <h2>My Tournaments</h2>
             {currentUser ? <TournamentList currentUser={currentUser}/> : null }
-        </>
+        </div>
     )
 }

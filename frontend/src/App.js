@@ -12,6 +12,7 @@ import Header from './components/partials/Header';
 import API from './API';
 import TournamentForm from './components/partials/TournamentForm';
 import Scorecard from './components/pages/Scorecard';
+import AllTournamentList from './components/pages/AllTournamentList'
 
 
 function HeaderWrapper({children, handleLogout, currentUser, userProfile}) {
@@ -90,7 +91,7 @@ function App() {
         path="/tournaments"
         element={
           <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
-            <TournamentList currentUser={currentUser} />
+            <AllTournamentList currentUser={currentUser} />
           </HeaderWrapper>
         }
       />

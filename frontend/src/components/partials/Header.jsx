@@ -16,16 +16,21 @@ export default function Header(props) {
   
 
   return (
-    <Navbar bg='dark' expand='lg' variant='dark'>
+    <Navbar bg='success' expand='lg'>
       <div>
         { currentUser ?
         <>
           <Link to='/profile'>Home</Link>
           <Link to='/tournaments'>Tournaments</Link>
           <Link to='/'><span onClick={handleLogout}>Logout</span></Link>
+          <img src='./tournament_time_logo.png' />
         </>
         :
         <>
+          <Link to='/'>Home</Link>
+          <Link to='/tournaments'>Tournaments</Link>
+          <Link to='/'>Login</Link>
+          <img src='./tournament_time_logo.png' className='headerImg'/>
         </>
         }
       </div>

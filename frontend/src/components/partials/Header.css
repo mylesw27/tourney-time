@@ -2,3 +2,12 @@
     background-color: pink !important;
     /* width: max-content; */
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
+.headerImg {
+    height: 50px;
+    width: 80px;
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios, { all } from "axios";
 import TournamentsCard from "../partials/TournamentsCard";
+import { Button } from "react-bootstrap";
 
 
 export default function TournamentList(props) {
@@ -47,8 +48,7 @@ export default function TournamentList(props) {
 
     return (
         <>
-            <h1>Tournaments</h1>
-            <Link to='/tournament/new'><button>Add Tournament</button></Link>
+            <Link to='/tournaments/'><Button variant='success'>Add Tournament</Button></Link>
             {tournamentIdArray.map((tournament, i) => {
                 return <TournamentsCard key={i} tournament={tournament} />
             })}

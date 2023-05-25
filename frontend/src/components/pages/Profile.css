@@ -1,0 +1,24 @@
+.profileDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nameDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.pencil {
+    margin-left: 10px;
+    color: gray
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}

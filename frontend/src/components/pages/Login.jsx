@@ -7,6 +7,7 @@ import { Button, Form } from "react-bootstrap"
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [message, setMessage] = useState(null)
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -14,24 +15,29 @@ export default function Login() {
             username: username,
             password: password
         }
-        const {data} = await API.post('token/', 
+        try {
+            const {data} = await API.post('token/', 
             user,
             {headers: {'Content-Type': 'application/json'}, 
             })
-        console.log(data)
-        localStorage.clear()
-        localStorage.setItem('access_token', data.access)
-        localStorage.setItem('refresh_token', data.refresh)
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`
-        window.location.href = '/profile'
+            console.log(data)
+            localStorage.clear()
+            localStorage.setItem('access_token', data.access)
+            localStorage.setItem('refresh_token', data.refresh)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`
+            window.location.href = '/profile'
+        } catch(err) {
+            setMessage("Incorrect Login Credentials. Please try again.")
+        }
 
     }
 
     return (
         <>
+            {message ? <p className="message">{message}</p> : null}
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Label controlId="username">Username</Form.Label>
+                    <Form.Label htmlFor="username" >Username</Form.Label>
                     <Form.Control 
                         placeholder="Enter Username"
                         name='username'
@@ -42,11 +48,11 @@ export default function Login() {
                     />
 
                 </Form.Group>
-                <Form.Label controlId="password">Password</Form.Label>
+                <Form.Label htmlFor="password">Password</Form.Label>
                 <Form.Control 
                     placeholder="Enter password"
                     name='password'
-                    type='text'
+                    type='password'
                     value={password}
                     required
                     onChange={e => setPassword(e.target.value)}

@@ -1,4 +1,4 @@
-body {
+.homeBackground {
     /* background: green; */
     /* color: white; */
     display: flex;
@@ -32,12 +32,27 @@ body {
     margin: 50px;
 }
 
+.cardDiv a:link { 
+    color: green;
+}
+
+.cardDiv a:visited {
+    color: green;
+}
 
 .homeCardDiv {
     opacity: .95;
     /* background-color: rgba(210,210,210,.8); */
+    box-shadow: 1px 1px 5px;
 }
-/* 
-.homeNavTabs {
-    color: white;
-} */
+
+.skip {
+    margin-left: 25px;
+}
+
+.or {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -20px
+}
