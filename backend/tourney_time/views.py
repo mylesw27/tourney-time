@@ -90,7 +90,8 @@ def register_view(request):
             res_data = {
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
-                'message': 'User Created'
+                'message': 'User Created',
+                'user': user.id
             }
 
             return JsonResponse(res_data, status=201)
