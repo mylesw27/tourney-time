@@ -57,7 +57,7 @@ As a user, I want to see players in my tournament \
 As a user, I want to be able to track my scores in the app \
 As a user, I want to be able to use a scorecard that tracks my score per hole \
 As a user, I want to be able to see other user's scores in the same tournament \
-As a user, I want to be able to see what how far players are in their round \
+As a user, I want to be able to see what how far players are in their round 
 
 ## MVP
 - A web app built with the React framework
