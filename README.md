@@ -1,15 +1,15 @@
 # Tourney Time
 As the host of an annual golf tournament, I find myself frustrated by the lack of apps available to casual golfers for our small tournaments. While apps to manage golf tournaments and display information exist, they can often cost thousands of dollars or fall victim to a terrible user experience. As a software engineer, I now have the ability to create an app that doesn't carry the hefty price tag. 
 
-Tourney time is an app used to help manage golf tournaments and display scores to the users. Tourney time will all users to track their golf scores for a golf tournament while also being able to see other user's scores. The front end of this app will use React build a mobile first designed app. The back end will use Django to build a postgres database and quickly initiate authroutes. 
+Tourney time is an app used to help manage golf tournaments and display scores to the users. Tourney time will all users to track their golf scores for a golf tournament while also being able to see other user's scores. The front end of this app will use React build a mobile first designed app. The back end will use Django to build a postgres database and initiate user auth. 
 
-## Technologies
+## Techn Stack
 ### Backend
 - Django 
 - Django REST framework
 - Python
 
-### Frontend -
+### Frontend 
 - React 
 - Node.js
 - Javascript
@@ -21,10 +21,6 @@ Tourney time is an app used to help manage golf tournaments and display scores t
 ![wireframe of tournament screen](./img/tournament.png)
 ![wireframe of leaderboard screen](./img/leaderboard.png)
 ![wireframe of scorecard screen](./img/scorecard.png)
-
-## Proof of Concept
-Below is a screenshot from the ios simulator that is currently running a React Native app.
-![screenshot from ios simulator](./img/proof_of_concept.png)
 
 ## Sprints
 - Friday - Get Django with Postgres up and running. 
@@ -67,7 +63,7 @@ As a user, I want to be able to see what how far players are in their round \
 - A web app built with the React framework
 - A backend end that stores user data, tournament data and scores in a relational database (postgres)
 - Display a live leaderboard that shows all player's current scores
-- Display partner pairings for each round of the tournament
+- Allow users to enter their scores while playing golf
 
 ## Stretch
 - Ability to post comments/images in a community thread within the tournament screen
