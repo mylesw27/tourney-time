@@ -36,9 +36,9 @@ export default function Header(props) {
           </>
           :
           <>
-            <Nav.Link to='/'>Home</Nav.Link>
-            <Nav.Link to='/tournaments'>Tournaments</Nav.Link>
-            <Nav.Link to='/'>Login</Nav.Link>
+            <Nav.Link href='/'>Home</Nav.Link>
+            <Nav.Link href='/tournaments'>Tournaments</Nav.Link>
+            <Nav.Link href='/'>Login</Nav.Link>
           </>
           }
 
