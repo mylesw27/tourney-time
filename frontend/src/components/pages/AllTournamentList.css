@@ -1,0 +1,14 @@
+.createButton {
+    margin: 20px;
+}
+
+.filter {
+    
+}
+
+.allTournaments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}

@@ -1,13 +1,21 @@
-.navbar-tt {
-    background-color: pink !important;
-    /* width: max-content; */
-}
-
 a:hover {
     text-decoration: underline;
+}
+
+a {
+    color: white;
 }
 
 .headerImg {
     height: 50px;
     width: 80px;
 }
+
+.banner {
+    height: 20px;
+}
+
+.nav-links a{
+    color: white;
+}
+

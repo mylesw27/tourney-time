@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from '../../API'
 import { useNavigate } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap'
 
 export default function TournamentForm(props) {
     const [currentUser, setCurrentUser] = useState('')
@@ -50,83 +51,93 @@ export default function TournamentForm(props) {
 
     return(
         <>
-            <form onSubmit={submitForm}>
-                {/* Name */}
-                <label htmlFor="name">Name</label>
-                <input 
-                    type="text"
-                    id="name"
-                    value={form.name}
-                    onChange={(e) => setForm({...form, name: e.target.value})}
-                />
-                {/* Organizer */}
-                <input type="text" id="organizer" defaultValue={currentUser} hidden></input>
-                {/* Date1 */}
-                <label htmlFor="date1">Round 1 Date:</label>
-                <input
-                    type="date"
-                    id="date1"
-                    value={form.date1}
-                    onChange={(e) => setForm({...form, date1: e.target.value})}
-                />
-                {/* Date2 */}
-                <label htmlFor="date2">Round 2 Date:</label>
-                <input
-                    type="date"
-                    id="date2"
-                    value={form.date2}
-                    onChange={(e) => setForm({...form, date2: e.target.value})}
-                />
-                {/* Date3 */}
-                <label htmlFor="date3">Round 3 Date:</label>
-                <input
-                    type="date"
-                    id="date3"
-                    value={form.date3}
-                    onChange={(e) => setForm({...form, date3: e.target.value})}
-                />
-                {/* Date4 */}
-                <label htmlFor="date4">Round 4 Date:</label>
-                <input
-                    type="date"
-                    id="date4"
-                    value={form.date4}
-                    onChange={(e) => setForm({...form, date4: e.target.value})}
-                />
-                {/* Course1 */}
-                <label htmlFor="course1">Round 1 Course:</label>
-                <input
-                    type="text"
-                    id="course1"
-                    value={form.course1}
-                    onChange={(e) => setForm({...form, course1: e.target.value})}
-                />
-                {/* Course2 */}
-                <label htmlFor="course2">Round 2 Course:</label>
-                <input
-                    type="text"
-                    id="course2"
-                    value={form.course2}
-                    onChange={(e) => setForm({...form, course2: e.target.value})}
-                />
-                {/* Course3 */}
-                <label htmlFor="course3">Round 3 Course:</label>
-                <input
-                    type="text"
-                    id="course3"
-                    value={form.course3}
-                    onChange={(e) => setForm({...form, course3: e.target.value})}
-                />
-                {/* Course4 */}
-                <label htmlFor="course4">Round 3 Course:</label>
-                <input
-                    type="text"
-                    id="course4"
-                    value={form.course4}
-                    onChange={(e) => setForm({...form, course4: e.target.value})}
-                />
-                <button type="submit">Submit</button>
-            </form>
+            <Form onSubmit={submitForm}>
+                <Form.Group>
+                    <Form.Label htmlFor="name">Name</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        id="name"
+                        value={form.name}
+                        onChange={(e) => setForm({...form, name: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Control type="text" id="organizer" defaultValue={currentUser} hidden  />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="date1">Round 1 Date:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        id="date1"
+                        value={form.date1}
+                        onChange={(e) => setForm({...form, date1: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="date2">Round 2 Date:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        id="date2"
+                        value={form.date2}
+                        onChange={(e) => setForm({...form, date2: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="date3">Round 3 Date:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        id="date3"
+                        value={form.date3}
+                        onChange={(e) => setForm({...form, date3: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group> 
+                    <Form.Label htmlFor="date4">Round 4 Date:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        id="date4"
+                        value={form.date4}
+                        onChange={(e) => setForm({...form, date4: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group> 
+                    <Form.Label htmlFor="course1">Round 1 Course:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="course1"
+                        value={form.course1}
+                        onChange={(e) => setForm({...form, course1: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group> 
+                    <Form.Label htmlFor="course2">Round 2 Course:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="course2"
+                        value={form.course2}
+                        onChange={(e) => setForm({...form, course2: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group> 
+                    <Form.Label htmlFor="course3">Round 3 Course:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="course3"
+                        value={form.course3}
+                        onChange={(e) => setForm({...form, course3: e.target.value})}
+                    />
+                </Form.Group>
+                <Form.Group> 
+                    <Form.Label htmlFor="course4">Round 3 Course:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="course4"
+                        value={form.course4}
+                        onChange={(e) => setForm({...form, course4: e.target.value})}
+                    />
+                </Form.Group>
+                <Button type="submit" variant="success">Submit</Button>
+            </Form>
         </>
     )
 }
