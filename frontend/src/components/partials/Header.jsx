@@ -4,6 +4,10 @@ import './Header.css'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import { Button, Container } from 'react-bootstrap';
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
+import logo from '../../assets/tournament_time_logo.png'
+import banner from '../../assets/logo_banner_text.png'
 
 export default function Header(props) {
   const [currentUser, setCurrentUser] = useState('')
@@ -17,23 +21,30 @@ export default function Header(props) {
 
   return (
     <Navbar bg='success' expand='lg'>
-      <div>
-        { currentUser ?
-        <>
-          <Link to='/profile'>Home</Link>
-          <Link to='/tournaments'>Tournaments</Link>
-          <Link to='/'><span onClick={handleLogout}>Logout</span></Link>
-          <img src='./tournament_time_logo.png' />
-        </>
-        :
-        <>
-          <Link to='/'>Home</Link>
-          <Link to='/tournaments'>Tournaments</Link>
-          <Link to='/'>Login</Link>
-          <img src='./tournament_time_logo.png' className='headerImg'/>
-        </>
-        }
-      </div>
+      <Container fluid>
+        <img src={logo} className='headerImg'/>
+        <img src={banner} className='banner' />
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <NavbarCollapse id='basic-navbar-nav'>
+        <Nav className='me-auto nav-links'>
+          { currentUser ?
+          <>
+            <Nav.Link href='/profile'>Home</Nav.Link>
+            <Nav.Link href='/tournaments'>Tournaments</Nav.Link>
+            <Nav.Link href='/'><span onClick={handleLogout}>Logout</span></Nav.Link>
+          
+          </>
+          :
+          <>
+            <Nav.Link to='/'>Home</Nav.Link>
+            <Nav.Link to='/tournaments'>Tournaments</Nav.Link>
+            <Nav.Link to='/'>Login</Nav.Link>
+          </>
+          }
+
+        </Nav>
+        </NavbarCollapse>
+      </Container>
     </Navbar>
   )
 

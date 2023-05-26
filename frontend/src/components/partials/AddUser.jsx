@@ -1,5 +1,6 @@
 import API from "../../API"
 import { useState, useEffect } from "react"
+import { Button } from "react-bootstrap"
 
 export default function AddUser(props) {
     const user = props.user
@@ -22,7 +23,7 @@ export default function AddUser(props) {
             });
         }
 
-    }, [])
+    }, [players])
 
     const handleAddPlayer = () => {
         
@@ -47,9 +48,9 @@ export default function AddUser(props) {
     }
 
     return (
-        <li>
+        <li className="addUser">
             <p>{user.username}</p>
-            {isPlaying ? <button onClick={handleRemovePlayer}>-</button> : <button onClick={handleAddPlayer}>+</button>}
+            {isPlaying ? <Button onClick={handleRemovePlayer} variant="success">-</Button> : <Button onClick={handleAddPlayer} variant="success">+</Button>}
         </li>
     )
 }

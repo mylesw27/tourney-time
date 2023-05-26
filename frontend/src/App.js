@@ -13,6 +13,7 @@ import API from './API';
 import TournamentForm from './components/partials/TournamentForm';
 import Scorecard from './components/pages/Scorecard';
 import AllTournamentList from './components/pages/AllTournamentList'
+import EditProfile from './components/pages/EditProfile';
 
 
 function HeaderWrapper({children, handleLogout, currentUser, userProfile}) {
@@ -83,6 +84,15 @@ function App() {
             <Profile
               currentUser={currentUser} userProfile={userProfile}
             />
+          </HeaderWrapper>
+        }
+      />
+
+      <Route
+        path='/edit/profile'
+        element= {
+          <HeaderWrapper handleLogout={handleLogout} currentUser={currentUser} userProfile={userProfile}>
+            <EditProfile currentUser={currentUser} userProfile={userProfile} />
           </HeaderWrapper>
         }
       />

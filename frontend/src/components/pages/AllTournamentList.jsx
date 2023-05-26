@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios, { all } from "axios";
 import TournamentsCard from "../partials/TournamentsCard";
 import { Button, Form } from "react-bootstrap";
+import './AllTournamentList.css'
 
 export default function TournamentList(props) {
     const [tournaments, setTournaments] = useState(["",""])
@@ -31,25 +32,28 @@ export default function TournamentList(props) {
     const filterTournamentsMap = filterTournaments.map((tournament, i) => {
         return <TournamentsCard key={i} tournament={tournament} />
     })
-    
-    console.log(tournaments)
 
     return (
-        <>
-            <Link to='/tournament/new'><Button>Create Tournament</Button></Link>
-            <Form.Label htmlFor="search">Filter:</Form.Label> 
+        <div className="allTournaments">
+            <Link to='/tournament/new'><Button variant="success" className="createButton">Create Tournament</Button></Link>
+            <div>
+            <div>
+            <Form.Label htmlFor="search" >Filter:</Form.Label> 
+            </div>
             <Form.Control 
                 id="search"
                 type="text"
                 value={search} 
                 onChange={(e) => setSearch(e.target.value)}
+                className="filter"
             />
+            
             {tournaments[0] != "" ? 
             filterTournamentsMap
             :
             null }
-            {tournaments[0].name ? <p>yep</p>  : <p>nope</p> }
-        </>
+            </div>
+        </div>
     )
 
 }

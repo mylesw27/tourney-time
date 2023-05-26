@@ -1,0 +1,18 @@
+.tournamentCard a {
+    color: rgb(31, 59, 26)
+}
+
+.tournamentCard {
+    background-color: white;
+    color: green;
+    width: 80vw;
+    height: 220px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.tournaments {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}

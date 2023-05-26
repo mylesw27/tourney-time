@@ -1,0 +1,16 @@
+.my-config {
+    --cfg-pubkey: "fb8d0a32991fc966bcb6";
+    --cfg-img-only: 1;
+    --cfg-multiple: 1;
+    --cfg-max-local-file-size-bytes: 10485760;
+    --cfg-use-cloud-image-editor: 1;
+    --cfg-source-list: "local, url, camera, dropbox";
+    --darkmode: 0;
+    --h-accent: 223;
+    --s-accent: 100%;
+    --l-accent: 61%;
+  }
+
+  .skip a {
+    color: green
+  }

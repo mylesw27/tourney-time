@@ -1,0 +1,52 @@
+
+
+.tournamentButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.tournamentHeaderDiv {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    /* justify-content: flex-end; */
+    margin: 0 20px;
+    /* margin-left: 40px; */
+}
+
+.tournamentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tournamentName {
+    text-align: right;
+    color: white;
+    margin: -70px 0 60px 0;
+    font-weight: 700;
+    width: 100%;
+}
+
+.leaderboardDiv {
+    margin-top: 30px;
+}
+
+.scoreNumber {
+    text-align: center;
+}
+
+.addUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 80%;
+}
+
+.searchbar {
+    margin: 20px;
+}

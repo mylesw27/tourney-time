@@ -47,12 +47,12 @@ export default function TournamentList(props) {
     console.log(tournamentIdArray)
 
     return (
-        <>
-            <Link to='/tournaments/'><Button variant='success'>Add Tournament</Button></Link>
+        <div>
+
             {tournamentIdArray.map((tournament, i) => {
                 return <TournamentsCard key={i} tournament={tournament} />
             })}
-        </>
+        </div>
     )
 
 }

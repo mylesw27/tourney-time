@@ -5,6 +5,7 @@ import TournamentList from "./TournamentList.jsx"
 import './Profile.css'
 import { Pencil, PencilFill } from 'react-bootstrap-icons'
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export default function Profile(props) {
     const [currentUser, setCurrentUser] = useState('')
@@ -37,9 +38,14 @@ export default function Profile(props) {
         <div className="profileDiv">
             <div className="nameDiv">
                 <h1>{profile.first_name} {profile.last_name}</h1>
-                <Link to='/profile/edit'><Pencil className="pencil" /></Link>
+                <Link to='/edit/profile'><Pencil className="pencil" /></Link>
             </div>
-            <h2>My Tournaments</h2>
+            <p className="username"><i>{profile.username}</i></p>
+            <div className="tournaments">
+                <h4 className="tournamentHeader">My Tournaments</h4>
+                <Link to='/tournaments/'><Button variant='success' className="addTourney">Add Tournament</Button></Link>
+            </div>
+            
             {currentUser ? <TournamentList currentUser={currentUser}/> : null }
         </div>
     )
