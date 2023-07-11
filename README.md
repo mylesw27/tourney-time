@@ -6,7 +6,7 @@ Tournament time is an app used to help manage golf tournaments and display score
 The deployment can be accessed here: [https://www.tournamenttime.app](https://www.tournamenttime.app/)
 
 ***PLEASE NOTE!*** \
-This app has now been split into two separate repositories, one for the front end and one for the back end. Please see those repos here: \
+This app has now been split into two separate repositories, one for the front end and one for the back end to help with deployment strategies. Please see those repos here: \
 Front End: [https://github.com/mylesw27/tournament-time-client](https://github.com/mylesw27/tournament-time-client) \
 Back End: [https://github.com/mylesw27/tournament-time-django](https://github.com/mylesw27/tournament-time-django) 
 
