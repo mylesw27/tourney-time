@@ -3,7 +3,7 @@ As the host of an annual golf tournament, I find myself frustrated by the lack o
 
 Tourney time is an app used to help manage golf tournaments and display scores to the users. Tourney time will all users to track their golf scores for a golf tournament while also being able to see other user's scores. The front end of this app will use React build a mobile first designed app. The back end will use Django to build a postgres database and initiate user auth. 
 
-## Techn Stack
+## Tech Stack
 ### Backend
 - Django 
 - Django REST framework
